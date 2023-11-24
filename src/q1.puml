@@ -1,0 +1,52 @@
+@startuml Instagram
+
+skinparam ClassAttributeIconSize 0
+hide circle
+skinparam Linetype ortho
+class User {
+    - username: String
+    - email: String
+    - password: String
+    - full_name: String
+    - posts: List<Post>
+    -{static} users: List<User>
+    -{static} current_user: User
+    + {static}add_user(username: String, email: String, password: String, full_name: String): void
+    + {static}load_users_from_file(filename: String): void
+    + {static}delete_post(post_id: int): void
+    + {static}login(username: String, password: String): User
+    + {static}logout(): void
+    + {static}make_post(post_body: String): void
+    + {static}make_comment(post_id: int, comment_body: String): void
+    + {static}write_profile_to_file(filename: String): void
+}
+
+class Post {
+    - caption: String
+    - user: User
+    - comments: List<Comment>
+    -{static} posts: List<Post>
+    + {static}remove(post_id: int): void
+    + add_comment(comment: Comment): void
+    + get_caption(): String
+    + get_user(): User
+    + {static}get_post(post_id: int): Post
+    + get_comments(): List<Comment>
+    + show_post(): void
+}
+
+class Comment {
+    - text: String
+    - user: User
+    - post: Post
+    + get_text(): String
+    + get_user(): User
+    + get_post(): Post
+}
+
+User o-- Post
+Post o-- Comment
+Comment *-- User
+Comment *-- Post
+
+@enduml

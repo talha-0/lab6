@@ -1,0 +1,10 @@
+Username: user1
+Full Name: User 1
+Email: 1@gmail.com
+Posts:
+	Hello World
+	Comments:
+		Nice post
+			By: User 2
+		Thanks
+			By: User 1
